@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  smartlock.services.locking.api:
+    image: ${DOCKER_REGISTRY}smartlockserviceslockingapi
+    build:
+      context: .
+      dockerfile: src/Services/SmartLock.Services.Locking.API/Dockerfile
