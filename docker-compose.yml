@@ -6,3 +6,10 @@ services:
     build:
       context: .
       dockerfile: src/Services/SmartLock.Services.Locking.API/Dockerfile
+
+  smartlock.services.accessright:
+    image: ${DOCKER_REGISTRY}smartlockservicesaccessright
+    build:
+      context: .
+      dockerfile: src/Services/SmartLock.Services.AccessRight/Dockerfile
+

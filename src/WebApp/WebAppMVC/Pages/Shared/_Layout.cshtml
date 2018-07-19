@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebAppMVC</title>
+    <title>@ViewData["Title"] - SmartLock WebAppMVC</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -15,6 +15,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -26,11 +27,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">WebAppMVC</a>
+                <a asp-page="/Index" class="navbar-brand">SmartLock WebAppMVC</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
+                    <li><a asp-page="/AuditLogs">Lock History</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Backend Services
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://localhost:5006">Access Right API Service</a></li>
+                            <li><a href="http://localhost:5002">Audit Log API Service</a></li>
+                            <li><a href="http://localhost:5001">Locking API Service</a></li>
+                            <li><a href="http://localhost:5003">Managmet API Service</a></li>
+                            <li><a href="http://localhost:5000">Identity Service</a></li>
+                        </ul>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
                 </ul>
@@ -44,7 +58,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - WebAppMVC</p>
+            <p>&copy; 2018 - SmartLock WebAppMVC</p>
         </footer>
     </div>
 

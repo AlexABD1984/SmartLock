@@ -6,7 +6,7 @@ namespace SmartLock.MessageBroker
 {
     public interface IMessageBroker
     {
-        void Publish(IMessage message);
+        void Publish(Message message);
 
         void Subscribe<T, TM>()
             where T : Message

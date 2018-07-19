@@ -1,0 +1,84 @@
+﻿@page
+@model WebAppMVC.Pages.AuditLogsModel
+
+@{
+    ViewData["Title"] = "AuditLogs";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>AuditLogs</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditLog.list[0].RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditLog.list[0].UserId)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.AuditLog[0].UserNameFamily)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.AuditLog.list[0].LockId)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.AuditLog[0].LockName)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.AuditLog.list[0].Command)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditLog.list[0].CommandResult)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AuditLog.list)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.UserNameFamily)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.LockId)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.LockName)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Command)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommandResult)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.AuditLogId">Details</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.AuditLog.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.AuditLog.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./AuditLogs"
+   asp-route-pageIndex="@(Model.AuditLog.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./AuditLogs"
+   asp-route-pageIndex="@(Model.AuditLog.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

@@ -1,6 +1,14 @@
-﻿namespace SmartLock.MessageBroker.RabbitMQ
+﻿using RabbitMQ.Client;
+using System;
+
+namespace SmartLock.MessageBroker.RabbitMQ
 {
-    internal interface IRabbitMQPersistentConnection
+    public interface IRabbitMQPersistentConnection:IDisposable
     {
+        bool IsConnected { get; }
+
+        bool TryConnect();
+
+        IModel CreateModel();
     }
 }
