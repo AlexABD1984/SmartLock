@@ -82,8 +82,8 @@ namespace SmartLock.Services.Locking.API.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in Lock Service API");
+                return Ok(new LockingResult(-1, "Internal Error"));
             }
-            return Ok(result);
         }
     }
 }

@@ -14,12 +14,15 @@ namespace SmartLock.Services.Locking.API.ApplicationServices
         private readonly ILogger<UserAccessService> _logger = null;
         private readonly ICacheManager<bool> _cache = null;
         private readonly AccessRightHttpClient _accessRightHttpClient = null;
+
+        public UserAccessService() { }
         public UserAccessService(ILogger<UserAccessService> logger,ICacheManager<bool> cache, AccessRightHttpClient accessRightHttpClient)
         {
             _cache = cache;
             _logger = logger;
             _accessRightHttpClient = accessRightHttpClient;
-        }
+        }        
+
         public async Task<bool> HasAccess(Guid userId, Guid lockId)
         {
             string cacheKey = $"UserId={userId}&LockId={lockId}";

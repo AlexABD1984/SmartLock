@@ -1,5 +1,4 @@
-﻿using SmartLock.Services.AuditLogs.API.Model;
-using SmartLock.Services.Locking.API.Model;
+﻿using SmartLock.Services.Locking.API.Model;
 using SmartLock.Services.Locking.API.Model.ViewModel;
 using System;
 using System.Collections.Generic;

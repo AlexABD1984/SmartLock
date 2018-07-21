@@ -1,6 +1,5 @@
 ﻿using CacheManager.Core.Logging;
 using Microsoft.Extensions.Logging;
-using SmartLock.Services.AuditLogs.API.Model;
 using SmartLock.Services.Locking.API.Infrastructure;
 using SmartLock.Services.Locking.API.Model;
 using System;
@@ -15,11 +14,13 @@ namespace SmartLock.Services.Locking.API.ApplicationServices
         private readonly AuditLogHttpClient _auditLogHttpClient;
         private readonly ILogger<AuditLogService> _logger = null;
 
+        public AuditLogService() { }
         public AuditLogService(AuditLogHttpClient auditLogHttpClient,ILogger<AuditLogService> logger)
         {
             _auditLogHttpClient = auditLogHttpClient;
             _logger = logger;
         }
+
         public async Task<Guid> LogLockRequest(Guid lockId,Guid userId, LockCommand command)
         {
             Guid auditLogId = await _auditLogHttpClient.CallAuditLog(lockId, userId, command);

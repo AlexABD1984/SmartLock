@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SmartLock.Services.AuditLogs.API.Model;
 using SmartLock.Services.Locking.API.Model;
 using System;
 using System.Collections.Generic;

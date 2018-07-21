@@ -1,54 +1,64 @@
-﻿//using Moq;
-//using System;
-//using System.Collections.Generic;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Xunit;
+﻿using CacheManager.Core;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Moq;
+using SmartLock.Services.Locking.API.Controllers;
+using SmartLock.Services.Locking.API.Model;
+using SmartLock.Services.Locking.API.Model.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
-//namespace SmartLock.Services.UnitTest.Locking
-//{
-//    public class LockingControllerTest
-//    {
-//        private readonly Mock<ILockServices> _catalogServiceMock;
+namespace SmartLock.Services.UnitTest.Locking
+{
+    public class LockingControllerTest
+    {
+        private readonly Mock<SmartLock.Services.Locking.API.ApplicationServices.LockingService> _lockingServiceMock;
+        private readonly Mock<SmartLock.Services.Locking.API.ApplicationServices.AuditLogService> _auditLogServiceMock;
+        private readonly Mock<SmartLock.Services.Locking.API.ApplicationServices.UserAccessService> _userAccessServiceMock;
+        private readonly Mock<ILogger<LockingController>> _loggerMock;
+        private readonly ILogger<LockingController> _logger;
 
-//        public CatalogControllerTest()
-//        {
-//            _catalogServiceMock = new Mock<ICatalogService>();
-//        }
+        public LockingControllerTest()
+        {
+            _lockingServiceMock = new Mock<Services.Locking.API.ApplicationServices.LockingService>();
+            _auditLogServiceMock = new Mock<Services.Locking.API.ApplicationServices.AuditLogService>();
+            _userAccessServiceMock = new Mock<Services.Locking.API.ApplicationServices.UserAccessService>();
+            _logger = Mock.Of<ILogger<LockingController>>();
+        }
 
-//        [Fact]
-//        public async Task OpenLock()
-//        {
-//            //Arrange
-//            var fakeBrandFilterApplied = 1;
-//            var fakeTypesFilterApplied = 2;
-//            var fakePage = 2;
-//            var fakeCatalog = GetFakeCatalog();
+        [Fact]
+        public async Task OpenLock()
+        {
+            //Arrange
+            var fakeUserId = Guid.NewGuid();
+            var fakeLockId = Guid.NewGuid();
+            var fakeSecurityCode = "";
+            OpenLockInfo openLockInfo = new OpenLockInfo(fakeUserId, fakeUserId, fakeSecurityCode);
 
-//            var expectedNumberOfPages = 5;
-//            var expectedTotalPages = 50;
-//            var expectedCurrentPage = 2;
+            //_userAccessServiceMock.Setup(x => x.HasAccess
+            //(
+            //    It.IsAny<Guid>(),
+            //    It.IsAny<Guid>()
+            //))
+            //.Returns(Task.FromResult<bool>(true));
+            var lockingController = new Services.Locking.API.Controllers.LockingController(
+                _logger, _userAccessServiceMock.Object, _lockingServiceMock.Object, _auditLogServiceMock.Object);
 
-//            _catalogServiceMock.Setup(x => x.GetCatalogItems
-//            (
-//                It.Is<int>(y => y == fakePage),
-//                It.IsAny<int>(),
-//                It.Is<int?>(y => y == fakeBrandFilterApplied),
-//                It.Is<int?>(y => y == fakeTypesFilterApplied)
-//             ))
-//             .Returns(Task.FromResult(fakeCatalog));
+            //Act
 
-//            //Act
-//            var orderController = new CatalogController(_catalogServiceMock.Object);
-//            var actionResult = await orderController.Index(fakeBrandFilterApplied, fakeTypesFilterApplied, fakePage, null);
+            var actionResultSuccessful = await lockingController.Lock(openLockInfo);
 
-//            //Assert
-//            var viewResult = Assert.IsType<ViewResult>(actionResult);
-//            var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
-//            Assert.Equal(model.PaginationInfo.TotalPages, expectedNumberOfPages);
-//            Assert.Equal(model.PaginationInfo.TotalItems, expectedTotalPages);
-//            Assert.Equal(model.PaginationInfo.ActualPage, expectedCurrentPage);
-//            Assert.Empty(model.PaginationInfo.Next);
-//            Assert.Empty(model.PaginationInfo.Previous);
-//        }
-//}
+
+            //Assert
+            var okObjectResult = actionResultSuccessful as LockingResult;
+            Assert.NotNull(okObjectResult);
+            Assert.Equal(okObjectResult.ResponseCode, -1);
+
+            //var viewResult = Assert.IsType< OkObjectResult>(LockOpenSuccessful)>(actionResultSuccessful);
+
+        }
+    }
+}
