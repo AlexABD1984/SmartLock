@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLock.MessageBroker.Rab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartLock.MessageBroker.Redis", "src\Infrastructure\SmartLock.MessageBroker.Redis\SmartLock.MessageBroker.Redis.csproj", "{283F0E1E-CBEC-4C83-A5FC-05C88007F682}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.HealthChecks", "src\Infrastructure\Microsoft.AspNetCore.HealthChecks\Microsoft.AspNetCore.HealthChecks.csproj", "{6BA29886-5459-42B2-87EF-06CAC6A0BCAF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.HealthChecks", "src\Infrastructure\Microsoft.Extensions.HealthChecks\Microsoft.Extensions.HealthChecks.csproj", "{E101355F-0883-43F7-BDFF-A526B7E5A6B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +101,14 @@ Global
 		{283F0E1E-CBEC-4C83-A5FC-05C88007F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{283F0E1E-CBEC-4C83-A5FC-05C88007F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{283F0E1E-CBEC-4C83-A5FC-05C88007F682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BA29886-5459-42B2-87EF-06CAC6A0BCAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BA29886-5459-42B2-87EF-06CAC6A0BCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BA29886-5459-42B2-87EF-06CAC6A0BCAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BA29886-5459-42B2-87EF-06CAC6A0BCAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E101355F-0883-43F7-BDFF-A526B7E5A6B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E101355F-0883-43F7-BDFF-A526B7E5A6B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E101355F-0883-43F7-BDFF-A526B7E5A6B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E101355F-0883-43F7-BDFF-A526B7E5A6B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +128,8 @@ Global
 		{BF6C8914-0FD9-4A44-A14A-ACC858AAAF27} = {8092ED71-8882-4900-87D9-90F45BFADA30}
 		{FD81D842-F9F9-44FC-A1BE-724390E483F1} = {8092ED71-8882-4900-87D9-90F45BFADA30}
 		{283F0E1E-CBEC-4C83-A5FC-05C88007F682} = {8092ED71-8882-4900-87D9-90F45BFADA30}
+		{6BA29886-5459-42B2-87EF-06CAC6A0BCAF} = {8092ED71-8882-4900-87D9-90F45BFADA30}
+		{E101355F-0883-43F7-BDFF-A526B7E5A6B6} = {8092ED71-8882-4900-87D9-90F45BFADA30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01782D88-8E81-4F03-A59F-B54664516295}

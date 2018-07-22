@@ -15,6 +15,7 @@ using Polly;
 using SmartLock.Services.Locking.API.ApplicationServices;
 using SmartLock.Services.Locking.API.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.HealthChecks;
 
 namespace SmartLock.Services.Locking.API
 {
@@ -31,7 +32,10 @@ namespace SmartLock.Services.Locking.API
         public void ConfigureServices(IServiceCollection services)
         {
             var identityServerUrl = Configuration.GetValue<string>("IdentityServerUrl");
-
+            services.AddHealthChecks(checks =>
+            {
+                checks.AddValueTaskCheck("HTTP Endpoint", () => new ValueTask<IHealthCheckResult>(HealthCheckResult.Healthy("Ok")));
+            });
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
