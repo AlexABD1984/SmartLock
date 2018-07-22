@@ -55,7 +55,7 @@ namespace SmartLock.Services.Locking.API.Controllers
             {
                 _logger.LogInformation($"User {openLockInfo.UserId} request {"Open"} Lock with Id= {openLockInfo.LockId}");
 
-                Guid auditLogId = await _auditLogService.LogLockRequest(openLockInfo.LockId, 
+                Guid auditLogId = await _auditLogService.LogLockRequest(openLockInfo.LockId,
                     openLockInfo.UserId, Model.LockCommand.Open);
 
                 if (_userAccessService.HasAccess(openLockInfo.UserId, openLockInfo.LockId).Result)
@@ -77,7 +77,7 @@ namespace SmartLock.Services.Locking.API.Controllers
                 {
                     var auditsult = await _auditLogService.LogLockResult(auditLogId, OpenLockResult.UserAccessDenied);
                     return Ok(new UserAccessDenied());
-                }                                
+                }
             }
             catch (Exception ex)
             {
